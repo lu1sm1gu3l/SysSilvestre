@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ALMRPTListadoPrecios" language="groovy" columnCount="2" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87ee1f1d-d624-47e5-8dcc-c9210c8eb152">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CCCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#6F4E6F">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="5b0f2cf7-3272-4eaa-9038-5f9ecb57c665">
+		<parameter name="pIdCategoria" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[call ALMSPRRPTPreciosProducto(2,$P{pIdCategoria})]]>
+		</queryString>
+		<field name="Producto" class="java.lang.String"/>
+		<field name="Unid.Venta.Abreb" class="java.lang.String"/>
+		<field name="PrecioReferencia" class="java.math.BigDecimal"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[call ALMSPRRPTPreciosProducto(1,null)]]>
+	</queryString>
+	<field name="IdCategoria" class="java.lang.Integer"/>
+	<field name="Descripcion" class="java.lang.String"/>
+	<field name="date(now())" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e8df7989-edb3-47b7-8bb9-c0244eccba92" x="18" y="0" width="537" height="16" forecolor="#000033"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE PRECIOS - CORP. ANGUI & NAIDU]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="188320d8-6a8f-4a97-a267-feba07594409" x="18" y="16" width="166" height="7" forecolor="#660000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="44e3b441-b232-41e6-8d90-f2dadd9444cd" x="18" y="0" width="41" height="11" forecolor="#000033"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actualizado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9e0852a4-adbf-4b1d-8da4-501598546f15" x="59" y="0" width="120" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date(now())}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a5a30a91-9109-4588-a0d5-615e027c4cf3" x="184" y="16" width="44" height="7" forecolor="#660000"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8af7cad0-c97e-4458-9b5f-cc35baa46fb5" x="228" y="16" width="44" height="7" forecolor="#660000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement uuid="f37433cb-2a69-4d1b-aee1-e6887a20a780" x="530" y="0" width="24" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="20031335-8284-41ae-8f2b-777e8d46f242" x="492" y="0" width="38" height="10"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pag. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="1cc7c34f-989e-4373-9407-08003e149d74" key="table" x="18" y="9" width="254" height="14"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="b6ce0ea8-04a0-4f70-87e3-30ff599acc30">
+						<datasetParameter name="pIdCategoria">
+							<datasetParameterExpression><![CDATA[$F{IdCategoria}+""]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column uuid="7a76398e-b1ee-4146-9441-6ea8561b4127" width="166">
+						<jr:detailCell height="10" rowSpan="1">
+							<textField>
+								<reportElement uuid="519800e3-632c-409c-aff3-5f4d26503998" x="0" y="0" width="166" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="SansSerif" size="7" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Producto}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="8e713018-03e8-44d4-8d03-f59da36e5052" width="44">
+						<jr:detailCell height="10" rowSpan="1">
+							<textField>
+								<reportElement uuid="3dec4521-a402-4b5f-a755-fc69b1162954" x="0" y="0" width="44" height="10"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="SansSerif" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Unid.Venta.Abreb}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="eb28f850-b618-4e0e-a24a-35e11543b381" width="44">
+						<jr:detailCell height="10" rowSpan="1">
+							<textField>
+								<reportElement uuid="79196eb9-ba12-4554-a127-ef2a921b50ef" x="0" y="0" width="44" height="10"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="SansSerif" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PrecioReferencia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement uuid="84df5457-34a2-4936-bcee-c33a0e433b6d" x="18" y="0" width="100" height="9"/>
+				<textElement>
+					<font fontName="SansSerif" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20"/>
+	</pageFooter>
+</jasperReport>
