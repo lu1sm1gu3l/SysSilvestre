@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VTARPTCierreCajaResumen" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e5c4fe9b-6577-4903-9157-8b2408d34b19">
+	<property name="ireport.zoom" value="1.3636363636363635"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#B0C4DE">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFDBFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="pfechasub" class="java.lang.String"/>
+	<parameter name="pidpuntoventasub" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[call TSOSPRCNSCuadreCajaTipoPago($P{pfechasub},$P{pidpuntoventasub})]]>
+	</queryString>
+	<field name="Moneda" class="java.lang.String"/>
+	<field name="IdMoneda" class="java.lang.Integer"/>
+	<field name="IdTipoPago" class="java.lang.Long"/>
+	<field name="TipoPago" class="java.lang.String"/>
+	<field name="MontoCuadre" class="java.math.BigDecimal"/>
+	<field name="MontoTesoreria" class="java.math.BigDecimal"/>
+	<field name="MontoDiferencia" class="java.math.BigDecimal"/>
+	<field name="IdCuadreaCaja" class="java.lang.Long"/>
+	<field name="MontoEfectivoInicial" class="java.math.BigDecimal"/>
+	<variable name="vmtoCuadre" class="java.math.BigDecimal" resetType="Group" resetGroup="Moneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{MontoCuadre}]]></variableExpression>
+	</variable>
+	<variable name="vmtoTso" class="java.math.BigDecimal" resetType="Group" resetGroup="Moneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{MontoTesoreria}]]></variableExpression>
+	</variable>
+	<variable name="vmtoDif" class="java.math.BigDecimal" resetType="Group" resetGroup="Moneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{MontoDiferencia}]]></variableExpression>
+	</variable>
+	<group name="Moneda">
+		<groupExpression><![CDATA[$F{Moneda}]]></groupExpression>
+		<groupHeader>
+			<band height="64">
+				<staticText>
+					<reportElement uuid="34456bf8-c59c-43f7-b333-03b5b2c5c711" x="17" y="10" width="46" height="20"/>
+					<textElement/>
+					<text><![CDATA[Moneda :]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="0626ad36-e69d-41a5-b5de-85c1f3a8e7fb" x="63" y="10" width="67" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{Moneda}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="19780f0e-fc6d-460c-a6af-c3ac952a9443" mode="Transparent" x="163" y="10" width="78" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" isBold="true"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<text><![CDATA[Monto Inicial :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="0feaca54-d272-46e4-8d8d-513170e44154" mode="Opaque" x="17" y="44" width="128" height="20" backcolor="#BFCDDB"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo Pago]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="24b1d6e4-306b-4000-b258-0c43639b04da" mode="Opaque" x="145" y="44" width="114" height="20" backcolor="#BFCDDB"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MontoCuadre]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="3369ae0f-d672-458d-95f6-40be0b938a12" mode="Opaque" x="259" y="44" width="104" height="20" backcolor="#BFCDDB"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MontoTesoreria]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="f3e17f52-5846-465c-806d-d5de8ca658b1" mode="Opaque" x="363" y="44" width="100" height="20" backcolor="#BFCDDB"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MontoDiferencia]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="56487c61-59ce-43e0-bc8f-76d96f037036" x="241" y="10" width="122" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{MontoEfectivoInicial}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="32">
+				<staticText>
+					<reportElement uuid="5cf48708-c1de-48ca-b8b1-39be35992344" mode="Transparent" x="17" y="0" width="128" height="20" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="true"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<text><![CDATA[Monto Total]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="43827267-3c38-494a-a762-bec2f6ddae21" x="145" y="0" width="114" height="20"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{vmtoCuadre}+" "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="c9c34039-4280-450d-922d-091fe5f1a6fe" x="259" y="0" width="104" height="20"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{vmtoTso}+" "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="a606a353-9acf-4e43-9930-c90719df40d5" x="363" y="0" width="100" height="20"/>
+					<box>
+						<pen lineWidth="0.25"/>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{vmtoDif}+" "]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement uuid="22a6168f-234c-4866-b1e6-bc7d0f2929aa" x="17" y="4" width="128" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Resumen Cuadre Caja :"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="3" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="4" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e19fc464-4408-45e0-8bcb-7511c287b347" x="17" y="0" width="128" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TipoPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1915c018-e7ad-4a28-9b8b-92ebb9e4fb0f" x="145" y="0" width="114" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MontoCuadre}+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b02a8405-24e2-47bb-a01f-6a8f2d802668" x="259" y="0" width="104" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MontoTesoreria}+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e4bae3d7-3f29-4457-bb61-4ba7b3f1b300" x="363" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MontoDiferencia}+" "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="11" splitType="Stretch"/>
+	</summary>
+</jasperReport>

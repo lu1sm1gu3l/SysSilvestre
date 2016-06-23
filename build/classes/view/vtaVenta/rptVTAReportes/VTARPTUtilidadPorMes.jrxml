@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportVentas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2735de3a-f75c-4a78-a862-71e67d44e1eb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="572"/>
+	<parameter name="panio" class="java.lang.String"/>
+	<parameter name="pidsucursal" class="java.lang.String"/>
+	<parameter name="pidmoneda" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[call VTASPRRPTUtlidadBrutaMensual($P{pidmoneda},$P{pidsucursal}
+,$P{panio});]]>
+	</queryString>
+	<field name="Sucursal" class="java.lang.String"/>
+	<field name="Moneda" class="java.lang.String"/>
+	<field name="Mes" class="java.lang.String"/>
+	<field name="IngresoTotalLiquido" class="java.math.BigDecimal"/>
+	<field name="EgresoTotalLiquido" class="java.math.BigDecimal"/>
+	<field name="Utilidad" class="java.math.BigDecimal"/>
+	<variable name="totaling" class="java.math.BigDecimal" resetType="Group" resetGroup="GrpSucursal" calculation="Sum">
+		<variableExpression><![CDATA[$F{IngresoTotalLiquido}]]></variableExpression>
+	</variable>
+	<variable name="totaleg" class="java.math.BigDecimal" resetType="Group" resetGroup="GrpSucursal" calculation="Sum">
+		<variableExpression><![CDATA[$F{EgresoTotalLiquido}]]></variableExpression>
+	</variable>
+	<variable name="totalut" class="java.math.BigDecimal" resetType="Group" resetGroup="GrpSucursal" calculation="Sum">
+		<variableExpression><![CDATA[$F{Utilidad}]]></variableExpression>
+	</variable>
+	<group name="GrpSucursal">
+		<groupExpression><![CDATA[$F{Sucursal}]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<staticText>
+					<reportElement uuid="d32c2e46-6bea-4027-90a5-df1677edf3a9" mode="Opaque" x="85" y="6" width="60" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Mes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="5a294cb8-38bb-4a4c-a225-60f4c14f9d83" mode="Opaque" x="145" y="6" width="72" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Total Ingresos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="229446a6-810b-4e0c-a607-c90cd47d3dfb" mode="Opaque" x="217" y="6" width="72" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Total Egresos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d3537e99-823f-4597-bb48-4851700d0f5d" mode="Opaque" x="289" y="6" width="72" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[Utilidad Bruta]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<staticText>
+					<reportElement uuid="4286c498-d7bd-4e06-b091-9613d4fdc2a4" mode="Opaque" x="85" y="0" width="60" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="36c87be8-35d8-4c21-9009-ed6905e3ef15" mode="Opaque" x="217" y="0" width="72" height="20" backcolor="#FFFFE1"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totaleg}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="3781d304-49df-4b17-a073-b2d36fc7bb59" mode="Opaque" x="145" y="0" width="72" height="20" backcolor="#FFFFE1"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totaling}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="04b41d0f-8dc9-4951-bc03-a1bfa4c7fae3" mode="Opaque" x="289" y="0" width="72" height="20" backcolor="#FFFFE1"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalut}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3bd59482-f88a-43a4-9c0b-14f18ba41c18" x="0" y="11" width="555" height="16" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[UTILIDAD BRUTA MENSUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2e6c10fc-0e83-488d-a877-99d63a30e933" x="447" y="41" width="26" height="20" forecolor="#000066"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Año :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="cc6287ad-ae32-493c-b604-5b23dd7e7dbc" x="481" y="40" width="59" height="21"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{panio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e4e38d6e-367c-48b2-9ccd-71b470cbc830" x="8" y="9" width="52" height="20" forecolor="#000066"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sucursal :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a15faace-ae40-43ae-9b46-a68a6a112bc8" x="187" y="9" width="66" height="20" forecolor="#000066"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MONEDA :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a456cc68-6748-4aa1-b18a-002f96abdba9" x="253" y="8" width="100" height="21"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Moneda}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="345edaee-66c3-4d86-a3f5-c625f813da48" x="0" y="38" width="555" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="ca44fd3b-63e0-4f46-8a56-f6f9b10a1bed" x="60" y="9" width="117" height="21"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Sucursal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="bc9b1422-5480-45aa-9384-5700d3dabd54" x="85" y="0" width="60" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e6d61398-8fb5-47e0-9e64-2a6f131b61dc" x="145" y="0" width="72" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IngresoTotalLiquido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f1969551-6a2f-42cd-838c-689943e2655a" x="217" y="0" width="72" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EgresoTotalLiquido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3fe189e7-2900-4c7f-933d-d7d0d0022797" x="289" y="0" width="72" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Utilidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28"/>
+	</pageFooter>
+	<summary>
+		<band height="763" splitType="Stretch">
+			<lineChart>
+				<chart theme="aegean">
+					<reportElement uuid="e991fdc6-e103-4afa-850c-54e91d5ebfb0" x="8" y="34" width="532" height="362"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Utilidad"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Utilidad}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+				</linePlot>
+			</lineChart>
+			<bar3DChart>
+				<chart theme="aegean">
+					<reportElement uuid="a6e58668-d631-456d-bff5-ccdd22da2398" x="8" y="404" width="532" height="343"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Bottom"/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Mes}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Utilidad}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+				</bar3DPlot>
+			</bar3DChart>
+			<staticText>
+				<reportElement uuid="1ffd3f03-0763-40df-8269-58897e9b26f0" x="8" y="12" width="179" height="16" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[GRAFICOS ESTADISTICOS]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

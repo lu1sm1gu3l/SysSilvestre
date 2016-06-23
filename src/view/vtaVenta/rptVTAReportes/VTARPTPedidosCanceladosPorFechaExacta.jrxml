@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VTARPTPedidosAnuladosFechaExacta" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#6F4E6F">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CCCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="pFechaExacta" class="java.lang.String"/>
+	<parameter name="pIdSucursal" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[call VTASPRRPTListadoPedidosCanceladosDetalle($P{pFechaExacta},$P{pIdSucursal})]]>
+	</queryString>
+	<field name="Moneda" class="java.lang.String"/>
+	<field name="MonedaDesc" class="java.lang.String"/>
+	<field name="IdMoneda" class="java.lang.Integer"/>
+	<field name="Codigo" class="java.lang.String"/>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="SubTotalNetoSinIGV" class="java.math.BigDecimal"/>
+	<field name="IGV" class="java.math.BigDecimal"/>
+	<field name="ISC" class="java.math.BigDecimal"/>
+	<field name="MontoTotal" class="java.math.BigDecimal"/>
+	<field name="pFechaCorrecta" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="pSucursal" class="java.lang.String"/>
+	<field name="TipoComprobante" class="java.lang.String"/>
+	<variable name="vSubNetSin" class="java.math.BigDecimal" resetType="Group" resetGroup="Moneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{SubTotalNetoSinIGV}]]></variableExpression>
+	</variable>
+	<variable name="vIGV" class="java.math.BigDecimal" resetType="Group" resetGroup="Moneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{IGV}]]></variableExpression>
+	</variable>
+	<variable name="vISC" class="java.math.BigDecimal" resetType="Group" resetGroup="Moneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{ISC}]]></variableExpression>
+	</variable>
+	<variable name="vMontoTotal" class="java.math.BigDecimal" resetType="Group" resetGroup="Moneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{MontoTotal}]]></variableExpression>
+	</variable>
+	<group name="Moneda">
+		<groupExpression><![CDATA[$F{IdMoneda}]]></groupExpression>
+		<groupHeader>
+			<band height="57">
+				<staticText>
+					<reportElement x="27" y="17" width="59" height="20" forecolor="#000066"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Moneda    :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="27" y="37" width="30" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Nº ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="57" y="37" width="58" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Nº Ped.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="115" y="37" width="71" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Comprobante]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="251" y="37" width="241" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="492" y="37" width="85" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Sub. Net. Sin IGV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="577" y="37" width="60" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[IGV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="637" y="37" width="60" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[ISC]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="697" y="37" width="75" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Monto Total]]></text>
+				</staticText>
+				<line>
+					<reportElement x="27" y="16" width="754" height="1"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="86" y="16" width="100" height="21"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{MonedaDesc}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table_CH" x="186" y="37" width="65" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement style="table_TD" x="492" y="0" width="85" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Moneda}+" "+$V{vSubNetSin}+" "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table_TD" x="577" y="0" width="60" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Moneda}+" "+$V{vIGV}+" "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table_TD" x="637" y="0" width="60" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Moneda}+" "+$V{vISC}+" "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table_TD" x="697" y="0" width="75" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Moneda}+" "+$V{vMontoTotal}+" "]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="802" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE PEDIDOS CANCELADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="53" width="59" height="20" forecolor="#000066"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha       :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="53" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pFechaCorrecta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="211" y="53" width="59" height="20" forecolor="#000066"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sucursal  :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="270" y="53" width="101" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pSucursal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="table_TD" x="27" y="0" width="30" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="57" y="0" width="58" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="251" y="0" width="241" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="115" y="0" width="71" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TipoComprobante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="492" y="0" width="85" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SubTotalNetoSinIGV}+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="577" y="0" width="60" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IGV}+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="637" y="0" width="60" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ISC}+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="697" y="0" width="75" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MontoTotal}+" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="186" y="0" width="65" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="11" width="281" height="19"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[SISTEMA CORP. ANGUI & NAIDU]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="764" y="11" width="17" height="17"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="715" y="11" width="49" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pag. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="27" y="9" width="754" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="19">
+			<staticText>
+				<reportElement x="27" y="0" width="97" height="19"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Fecha de Impresión:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="124" y="0" width="100" height="19"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
